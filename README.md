@@ -1,20 +1,85 @@
-<p align="center">
-    <img src="https://user-images.githubusercontent.com/1342803/36623515-7293b4ec-18d3-11e8-85ab-4e2f8fb38fbd.png" width="320" alt="API Template">
-    <br>
-    <br>
-    <a href="http://docs.vapor.codes/3.0/">
-        <img src="http://img.shields.io/badge/read_the-docs-2196f3.svg" alt="Documentation">
-    </a>
-    <a href="http://vapor.team">
-        <img src="http://vapor.team/badge.svg" alt="Slack Team">
-    </a>
-    <a href="LICENSE">
-        <img src="http://img.shields.io/badge/license-MIT-brightgreen.svg" alt="MIT License">
-    </a>
-    <a href="https://circleci.com/gh/vapor/api-template">
-        <img src="https://circleci.com/gh/vapor/api-template.svg?style=shield" alt="Continuous Integration">
-    </a>
-    <a href="https://swift.org">
-        <img src="http://img.shields.io/badge/swift-4.1-brightgreen.svg" alt="Swift 4.1">
-    </a>
-</center>
+# Swift + Vapor + Heroku
+
+### Install Vapor
+```
+$ brew install vapor/tap/vapor
+```
+
+### Create Vapor sample project
+```
+$ vapor new HelloVapor --branch=beta
+```
+
+### Open project in XCode
+```
+$ cd HelloVapor
+$ vapor xcode
+```
+Run -> My Mac
+
+### Push project to Github
+```
+$ git add -A
+$ git commit -m "Push to remote"
+$ git push -u origin master
+```
+
+### Install swiftenv
+https://swiftenv.fuller.li/en/latest/installation.html
+```
+$ git clone https://github.com/kylef/swiftenv.git ~/.swiftenv
+```
+
+For ZSH:
+```
+$ echo 'export SWIFTENV_ROOT="$HOME/.swiftenv"' >> ~/.zshenv
+$ echo 'export PATH="$SWIFTENV_ROOT/bin:$PATH"' >> ~/.zshenv
+$ echo 'eval "$(swiftenv init -)"' >> ~/.zshenv
+```
+
+### Use Swift 4.1 snapshot for this project
+```
+$ swiftenv local 4.1
+```
+
+Confirm version 
+```
+$ swiftenv version
+4.1 (set by /<path>/HelloVapor/.swift-version)
+```
+
+### Connect to Heroku
+```
+$ heroku auth:login
+Enter your Heroku credentials:
+Email: <email address>
+Password: ***************
+Logged in as <email address>
+```
+
+### Create the app in Heroku. 
+Use buildpack `https://github.com/kylef/heroku-buildpack-swift`
+```
+$ vapor heroku init
+Would you like to provide a custom Heroku app name?
+y/n> y
+Custom app name:
+> <app name>
+Would you like to deploy to a region other than the US?
+y/n> n
+https://<app name>.herokuapp.com/ | https://git.heroku.com/<app name>.git
+
+Would you like to provide a custom Heroku buildpack?
+y/n> y
+Custom buildpack:
+> https://github.com/kylef/heroku-buildpack-swift
+Setting buildpack...
+Are you using a custom Executable name?
+y/n> n
+Setting procfile...
+Committing procfile...
+Would you like to push to Heroku now?
+y/n> y
+This may take a while...
+Building on Heroku ... ~5-10 minutes
+```
